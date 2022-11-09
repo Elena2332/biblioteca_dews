@@ -15,7 +15,11 @@ class m_principal extends CI_Model
         return $res->result();
     }
 
-
+    function obtenerLibrosGenero($gen)
+    {
+        $res = $this->db->query("select idlibro, titulo, nombre from libros,autores where libros.idautor=autores.idautor and genero='$gen'");
+        return $res->result();
+    }
 
 
     
