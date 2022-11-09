@@ -28,13 +28,11 @@ class c_principal extends CI_Controller {
     {
         $this->obtenerGeneros();
         $data['libros'] = $this->m_principal->obtenerLibrosGenero($gen);  // array de libros autor
+        $libros = $this->m_principal->obtenerPrestamos();  //
 
         // $this->load->view('v_principal');
         $this->load->view('v_tablaLibros',$data);   // carga tabla de libros y autores
-        $this->load->view('v_listaLibros',$data);   // carga vista de las listas
+        $this->load->view('v_listasLibros',$data);   // carga vista de las listas
         $this->load->view('v_footer');
     }
-
-
-
 }
