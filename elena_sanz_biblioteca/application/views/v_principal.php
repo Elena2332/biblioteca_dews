@@ -1,3 +1,4 @@
+<!-- CABECERA y MENU LATERAL -->
 <?php
     $this->load->helper('url');
     $css = base_url().'css/estilo.css';
