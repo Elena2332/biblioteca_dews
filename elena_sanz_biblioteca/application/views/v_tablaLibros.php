@@ -6,7 +6,7 @@
             foreach($libros as $libro)
             {
                 $txtHTML = $txtHTML. '<tr>';
-                $txtHTML = $txtHTML. '<td><input type="checkbox" value="'.$libro->idlibro.'"/></td>';
+                $txtHTML = $txtHTML. '<td><input type="checkbox" name="chLibros[]" value="'.$libro->idlibro.'"/></td>';
                 $txtHTML = $txtHTML. '<td>'.$libro->titulo.'</td>';
                 $txtHTML = $txtHTML. '<td>'.$libro->nombre.'</td>';
                 $txtHTML = $txtHTML. '</tr>';
