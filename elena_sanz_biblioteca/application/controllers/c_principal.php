@@ -11,8 +11,21 @@ class c_principal extends CI_Controller {
 
     function index()
     {
+        //calendario
+        $this->load->library('calendar');
+        $dias = [];
+        for($i=1 ; $i<=31 ;$i++)
+            array_push($dias,'index.php/mostrarDia/'.date('Y').'-'.date('m').'-'.$i);
+        $data['calendario'] = $this->calendar->generate(date('Y'), date('m'), $dias);
+
+        //librosPrestamos
+        $data['libros'] = $this->m_principal->obtenerLibros();
+
+        //generos
         $data['generos'] = $this->m_principal->obtenerGeneros();  // array de strings generos
         $this->load->view('v_principal',$data);
+        $this->load->view('v_calendario',$data);
+        $this->load->view('v_librosPrestados',$data);
         $this->load->view('v_footer');
     }
 
@@ -51,7 +64,16 @@ class c_principal extends CI_Controller {
             }
             $this->load->view('v_listasLibros',$data);   // carga vista de las listas
         }        
-
         $this->load->view('v_footer');   //cargar footer
     }
+
+    function mostrarDia($fecha)
+    {
+        $data['prestamos'] = $this->m_principal->obtenerPrestamosDia($fecha);
+        $data['generos'] = $this->m_principal->obtenerGeneros();
+        $this->load->view('v_principal',$data);
+        $this->load->view('v_prestamosDia',$data);        
+        $this->load->view('v_footer'); 
+    }
+
 }

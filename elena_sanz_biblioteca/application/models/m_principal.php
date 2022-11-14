@@ -37,6 +37,19 @@ class m_principal extends CI_Model
         return $numFilas;
     }
 
+    function obtenerPrestamosDia($fecha)
+    {
+        $sql = "select distinct(titulo), nombre from prestamos p,libros l,autores a where p.idlibro=l.idlibro and a.idautor=l.idautor and fecha='$fecha'";
+        $res = $this->db->query($sql);
+        return $res->result();
+    }
+
+    function obtenerLibros()
+    {
+        $sql = "select distinct(titulo) from libros";
+        $res = $this->db->query($sql);
+        return $res->result();
+    }
 
     function insertarPrestamo($id)  // inserta un prestamo
     {
